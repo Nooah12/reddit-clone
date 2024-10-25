@@ -1,11 +1,14 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
+import Link from 'next/link'
+import Navbar from './Navbar'
 
 const Header = () => {
   return (
     <header className='flex justify-between p-8 mb-4'>
-        <h1>Reddit</h1>
-        <Navbar />
+      <Link href='/' className='text-2xl font-bold'>
+        reddit
+      </Link>
+      <Navbar />
     </header>
   )
 }
