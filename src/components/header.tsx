@@ -24,7 +24,7 @@ const Header = async () => {
         </div>
           ) : (
             <Link href='/auth/log-in'>
-              <Button variant="primary">log in</Button>
+              <Button variant="primary">Log In</Button>
             </Link>
           )}
     </header>

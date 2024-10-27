@@ -20,7 +20,7 @@ export const Button = ({
       className={`rounded-md font-bold px-4 py-2 transition-colors duration-200 
         ${variant === "primary"
           ? "bg-orange-500 text-white hover:bg-orange-600"
-          : "border-2 border-gray-300 text-gray-800 hover:bg-gray-100"}
+          : "bg-[#115BCA] text-white border-2 border-gray-300 hover:bg-gray-100"}
       `}
     >
       {children}
