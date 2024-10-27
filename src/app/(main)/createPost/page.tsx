@@ -13,21 +13,21 @@ const CreatePost = () => {
   };
  */
   return (
-    <form /* onSubmit={handleSubmit} */ className="flex flex-col gap-4 p-4 max-w-md mx-auto">
+    <form /* onSubmit={handleSubmit} */ className="flex flex-col gap-4 p-4 w-screen mx-auto">
       <input
         type="text"
         //value={title}
         //onChange={(e) => setTitle(e.target.value)}
         required
         placeholder="Title"
-        className="p-2 border-2 rounded-md"
+        className="p-2 border rounded-2xl"
       />
       <textarea
         //value={content}
         //onChange={(e) => setContent(e.target.value)}
         required
         placeholder="Content..."
-        className="p-2 border-2 rounded-md"
+        className="p-2 border rounded-2xl"
         rows={5}
       />
 
