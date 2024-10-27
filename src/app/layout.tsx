@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { QueryClientProvider } from "@/provider/query-client-provider";
 
@@ -15,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={'flex flex-col bg-zinc-50 font-medium text-zinc-800'}>
+      <body className={'flex min-h-screen flex-col items-center bg-zinc-50 font-medium text-zinc-800'}>
         <QueryClientProvider>
           {children}
         </QueryClientProvider>

@@ -87,17 +87,14 @@ export type Database = {
         Row: {
           email: string
           id: string
-          username: string
         }
         Insert: {
           email: string
           id?: string
-          username: string
         }
         Update: {
           email?: string
           id?: string
-          username?: string
         }
         Relationships: []
       }

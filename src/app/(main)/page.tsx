@@ -9,7 +9,7 @@ export default async function Home() { // server component
   const { data: posts, error } = await getHomePosts(supabase)
 
   return (
-    <main className='main space-y-12 self-center'>
+    <main className='main space-y-12'>
       <h1>Latest Posts</h1> 
       {error || posts.length === 0 ? (
         <div>no posts found mf</div>

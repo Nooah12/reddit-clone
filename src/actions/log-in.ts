@@ -1,9 +1,10 @@
+'use server'
 import { createClient } from '@/utils/supabase/server'
 import { logInSchema } from './schemas'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
-const logIN = async (data: z.infer<typeof logInSchema) => { // formData skickar data från form??
+const logIn = async (data: z.infer<typeof logInSchema>) => { // formData skickar data från form??
     const supabase = createClient()
     
     /*     const data = {
@@ -21,4 +22,4 @@ const logIN = async (data: z.infer<typeof logInSchema) => { // formData skickar 
     redirect('/')
 }
 
-export default logIN
+export default logIn
