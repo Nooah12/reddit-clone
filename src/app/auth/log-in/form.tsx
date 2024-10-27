@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { RedditButton } from "@/components/button";
+import { Button } from "@/components/button";
 
 export const LogInForm = () => {
   const { mutate, error, isPending } = useMutation({
@@ -24,7 +24,7 @@ export const LogInForm = () => {
       <input {...register('password')} placeholder="Password" type="password" className="p-2 border-2 rounded-xl" />
       {errors.password && <span>{errors.password.message}</span>}
       
-      <RedditButton variant="primary" type="submit">{isPending ? 'Logging in...' : 'Login'}</RedditButton>
+      <Button variant="primary" type="submit">{isPending ? 'Logging in...' : 'Login'}</Button>
       
       {error && <p>{error.message}</p>}
     </form>

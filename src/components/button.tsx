@@ -7,7 +7,7 @@ type RedditButtonProps = {
   onClick?: () => void;
 }
 
-export const RedditButton = ({ 
+export const Button = ({ 
   variant = "primary",
   type = "button",
   children, 
