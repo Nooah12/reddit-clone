@@ -1,14 +1,6 @@
 import Link from 'next/link'
 
-export const Post = ({
-  author,
-  title,
-  slug,
-}: {
-  author: string
-  title: string
-  slug: string
-}) => {
+export const Post = ({author, title, slug,}: {author: string, title: string, slug: string}) => {
   return (
     <Link
       href={`/post/${slug}`}
