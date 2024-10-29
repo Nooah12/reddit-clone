@@ -44,7 +44,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
       <h1 className="mb-4 text-2xl font-bold">{data.title}</h1>
       <p>{data.content}</p>
       
-      <Comments initialComments={[]} postId={data.id} />
+      <Comments postId={data.id} />
     </section>
   )
 }

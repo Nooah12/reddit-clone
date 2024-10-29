@@ -17,13 +17,3 @@ export const getPostsByQuery = (query: string) => {
     .textSearch('title', query.replace(/ /g, '+')) // söka med mellanrum
 }
 export default getHomePosts
-
-const getComments = (supabase: ReturnType<typeof createClient>, postId: string) => {
-    return supabase
-      .from('comments')
-      .select('id, comment, users("email")')
-      .eq('post_id', postId)
-      .order('created_at', { ascending: false })
-}
-export type CommentsType = QueryData<ReturnType<typeof getComments>>
-  

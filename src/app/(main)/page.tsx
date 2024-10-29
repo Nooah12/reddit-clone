@@ -1,8 +1,9 @@
-import {PostList} from "@/components/PostList/PostList";
 import { createClient } from '@/utils/supabase/server'
 import getHomePosts from '@/utils/supabase/queries'
+import { Post } from "@/components/Post/Post";
 
 // export const dynamic = 'force-dynamic' // stänger av cashe helt på denna sida
+export const revalidate = 60 * 15 // 15 min
 
 export default async function Home() { // server component
   const supabase = createClient()
@@ -14,7 +15,16 @@ export default async function Home() { // server component
       {error || posts.length === 0 ? (
         <div>no posts found mf</div>
       ) : ( 
-      <PostList initialPosts={posts} />  
+        <section className='flex flex-col items-center gap-4'>
+        {posts.map(({id, title, slug, users}) => (
+          <Post
+            key={id}
+            title={title}
+            slug={slug}
+            author={users?.email || 'anonymous'}
+            />
+        ))}
+      </section>  
       )}
     </main>
   )

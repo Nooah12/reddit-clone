@@ -32,5 +32,3 @@ export const PostList = ({initialPosts}: {initialPosts: PostsType}) => {
     </section>
   )
 }
-
-
