@@ -16,7 +16,7 @@ const DeletePostButton = ({postId}: {postId: string}) => {
     })
 
   return (
-    <Button onClick={() => mutate()} variant='secondary'>Delete</Button>
+    <Button onClick={() => mutate()} variant='primary'>Delete</Button>
   )
 }
 

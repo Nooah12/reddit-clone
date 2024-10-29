@@ -17,10 +17,10 @@ export const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={`rounded-md font-bold px-4 py-2 transition-colors duration-200 
+      className={`rounded-full font-bold px-4 py-2 transition-colors duration-200 
         ${variant === "primary"
           ? "bg-orange-500 text-white hover:bg-orange-600"
-          : "bg-[#115BCA] text-white border-2 border-gray-300 hover:bg-gray-100"}
+          : "bg-blue-500 text-white hover:bg-blue-600"}
       `}
     >
       {children}
