@@ -1,5 +1,5 @@
 import { signUp } from "@/actions/sign-up"
-import { Button } from "@/components/button"
+import { Button } from "@/components/buttons/button"
 
 export const SignUpForm = () => {
   // när vi submit är det action signUp som skickas?

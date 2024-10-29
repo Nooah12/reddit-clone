@@ -42,18 +42,18 @@ const Comments = async ({ postId }: { postId: string }) => {
     .order('created_at', { ascending: false })
 
     if (error) {
-      return <div>Cant load comments</div>
+      return <p>Cant load comments</p>
     }
     
     if (comments.length === 0) {
-      return <div>No comments</div>
+      return <p>No comments</p>
     }
 
   return (
     <div>
       {comments?.map(({ id, comment, users }) => (
         <div key={id}>
-          <p><strong>{users?.email || 'anonymous'}:</strong> {comment}</p>
+          <p><strong>{users?.email || 'anonymous'}:</strong>{comment}</p>
         </div>
       ))}
     </div>

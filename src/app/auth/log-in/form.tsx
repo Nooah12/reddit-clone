@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/components/button";
+import { Button } from "@/components/buttons/button";
 
 export const LogInForm = () => {
   const { mutate, error, isPending } = useMutation({

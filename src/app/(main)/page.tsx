@@ -1,6 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import getHomePosts from '@/utils/supabase/queries'
-import { Post } from "@/components/Post/Post";
+import { Post } from "@/components/Post";
 
 // export const dynamic = 'force-dynamic' // stänger av cashe helt på denna sida
 export const revalidate = 60 * 15 // 15 min

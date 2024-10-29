@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { Button } from "@/components/button"
+import { Button } from "@/components/buttons/button"
 import { createClient } from '@/utils/supabase/server'
 import { logOut } from "@/actions/log-out"
-import { LogOutButton } from './logoutButton'
+import { LogOutButton } from './buttons/logoutButton'
 // import Navbar from './Navbar'
 
 const Header = async () => {
