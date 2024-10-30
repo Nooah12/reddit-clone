@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { QueryClientProvider } from "@/provider/query-client-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Reddit Clone",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className={'flex min-h-screen flex-col items-center bg-zinc-50 font-medium text-zinc-800'}>
         <QueryClientProvider>
           {children}
+          <Toaster />
         </QueryClientProvider>
       </body>
     </html>
