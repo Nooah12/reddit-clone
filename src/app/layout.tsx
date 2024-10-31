@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { QueryClientProvider } from "@/provider/query-client-provider";
 import { Toaster } from "sonner";
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 export const metadata: Metadata = {
   title: "Reddit Clone",

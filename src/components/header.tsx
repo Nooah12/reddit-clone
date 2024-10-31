@@ -4,20 +4,27 @@ import { Button } from "@/components/buttons/button"
 import { createClient } from '@/utils/supabase/server'
 import { logOut } from "@/actions/log-out"
 import { LogOutButton } from './buttons/logoutButton'
+import { SearchBar } from './searchBar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 // import Navbar from './Navbar'
 
 const Header = async () => {
   const supabase = createClient()
   const {data: {user}} = await supabase.auth.getUser()  // samma funktion som i middleware
   return (
-    <header className='w-full flex justify-between p-8 mb-4'>
+    <header className='w-full flex justify-between items-center px-4 py-4 md:px-20'>
       <Link href='/' className='text-2xl font-bold'>
         reddit
       </Link>
+      <SearchBar />
       {user ? (
-        <div className='flex gap-4'>
+        <div className='flex gap-4 items-center'> 
           <Link href='/createPost'>
-            <Button variant='secondary'>+</Button>
+            <Button variant='secondary'>
+              <FontAwesomeIcon icon={faPlus} />
+            </Button>
             {/* <Button onClick={() => logOut()}>log out</Button> */} 
           </Link>
           <LogOutButton />

@@ -27,7 +27,7 @@ const CreatePost = () => {
           {...register('title')}
           // error={errors.title} // funkar ej?
           type="text"
-          required
+          //required
           placeholder="Title"
           className="p-2 border rounded-2xl"
         />
@@ -35,7 +35,7 @@ const CreatePost = () => {
         <textarea
           {...register('content')}
           // error={errors.content} // funkar ej?
-          required // behövs?
+          //required // behövs?
           placeholder="Content..."
           className="p-2 border rounded-2xl"
           rows={5}
