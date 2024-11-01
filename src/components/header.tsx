@@ -7,6 +7,8 @@ import { LogOutButton } from './buttons/logoutButton'
 import { SearchBar } from './searchBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faReddit } from '@fortawesome/free-brands-svg-icons';
+
 
 // import Navbar from './Navbar'
 
@@ -14,9 +16,10 @@ const Header = async () => {
   const supabase = createClient()
   const {data: {user}} = await supabase.auth.getUser()  // samma funktion som i middleware
   return (
-    <header className='w-full flex justify-between items-center px-4 py-4 md:px-20'>
+    <header className='w-full flex justify-between items-center px-4 py-4 gap-4 md:px-20'>
       <Link href='/' className='text-2xl font-bold'>
-        reddit
+      <FontAwesomeIcon icon={faReddit} style={{color: "#f53629",}} />
+        <span className='ml-1'>reddit</span>
       </Link>
       <SearchBar />
       {user ? (

@@ -23,12 +23,24 @@ export const middleware = async (request: NextRequest) => {
     )
     const {data: {user}} = await supabase.auth.getUser()
 
-    if (!user && protectedRoutes.includes(request.nextUrl.pathname)) {
+   /*  if (!user && protectedRoutes.includes(request.nextUrl.pathname)) {
         const url = request.nextUrl.clone()
         url.pathname = '/auth/log-in'
         return NextResponse.redirect(url)
-    }
+    } */
+
+        if (!user && protectedRoutes.some((route) => route.test(request.nextUrl.pathname))) { // .some = räcker nån blir true ?
+            const url = request.nextUrl.clone()
+            url.pathname = '/auth/log-in'
+            return NextResponse.redirect(url)
+          }
+    
     return supabaseResponse
 }
 
-const protectedRoutes = ['/createPost'] 
+/* const protectedRoutes = ['/createPost']  */
+
+const protectedRoutes = [
+    /^\/create$/, // match /create exactly
+    /^\/post\/[^\/]+\/edit$/ // match /post/whatever/edit
+  ]

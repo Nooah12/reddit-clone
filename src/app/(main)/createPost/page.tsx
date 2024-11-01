@@ -1,6 +1,6 @@
 'use client'
 import { createPost } from "@/actions/create-post";
-import { createPostSchema } from "@/actions/schemas";
+import { postSchema } from "@/actions/schemas";
 import { Button } from "@/components/buttons/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -15,8 +15,9 @@ const CreatePost = () => {
     onError: (error) => toast.error(error.message)
   })
 
-  const {register, handleSubmit, formState: {errors}} = useForm<z.infer<typeof createPostSchema>>({
-    resolver: zodResolver(createPostSchema)
+  const {register, handleSubmit, formState: {errors}} = useForm<z.infer<typeof postSchema>>({
+    resolver: zodResolver(postSchema),
+    // mode: "onBlur" 
   })
   
   return (
@@ -41,7 +42,7 @@ const CreatePost = () => {
           rows={5}
         />
         {errors.content && <p className="text-red-500">{errors.content.message}</p>}
-        <Button type="submit" variant="secondary">Create Post</Button>
+        <Button type="submit" variant="secondary">{isPending ? 'Uploading post..' : 'Post'}</Button>
       </form>
     </main>
   );
