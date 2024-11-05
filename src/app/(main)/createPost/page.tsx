@@ -42,16 +42,12 @@ const CreatePost = () => {
         <input
           {...register('title')}
           type="text"
-          // error={errors.title} // funkar ej?
-          //required
           placeholder="Title"
           className="p-2 border rounded-2xl"
         />
         {errors.title && <p className="text-red-500">{errors.title.message}</p>}
         <textarea
           {...register('content')}
-          // error={errors.content} // funkar ej?
-          //required // behövs?
           placeholder="Content..."
           className="p-2 border rounded-2xl"
           rows={5}
