@@ -29,7 +29,7 @@ export const SearchBar = () => {
 
   return (
     <div className='relative w-full max-w-lg'>
-      <div className='flex w-full items-center gap-2 rounded-full bg-white px-4 py-2 text-zinc-400'>
+      <div className='flex relative w-full items-center gap-2 rounded-full bg-white px-4 py-2 text-zinc-400'>
         <label htmlFor='search'>
           <Search size={20} />
         </label>

@@ -16,14 +16,27 @@ const Comments = async ({ postId }: { postId: string }) => {
     }
 
     if (comments.length === 0) {
-      return <div>No comments yet</div>
+      return (
+        <div className='flex'>
+          <div className='basis-12 mr-4'>
+            <img src="/thinking-snoo.png" alt="snoo-logo" className='w-auto' />
+          </div>
+          <div className='basis-full'>
+            <p className='text-lg font-semibold mb-4'>Be the first to comment</p>
+            <p className='text-sm font-light'>
+              Nobody's responded to this post yet.<br />
+              Add your thoughts and get the conversation going.
+            </p>
+          </div>
+        </div>
+      )
     }
 
   return (
     <>
       {comments?.map(({ id, comment, users }) => (
         <div key={id}>
-          <p><strong>{users?.email || 'anonymous'}:</strong>{comment}</p>
+          <p><strong>{users?.email || 'anonymous'}:</strong> {comment}</p>
         </div>
       ))}
     </>

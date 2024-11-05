@@ -10,7 +10,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 export const EditPostForm = ({defaultValues, postId}: {defaultValues: Pick<Tables<'posts'>, 'title' | 'content'>, postId: string}) => { // går in i vår post-table och bara ta title samt content, Pick gör | and ist för or ?
-    const {mutate, isPending} = useMutation({
+    const {mutate} = useMutation({
         mutationFn: editPost,
         onError: (error) => toast.error(error.message),
         onSuccess: () => toast.success('Your post was updated!')
@@ -44,7 +44,7 @@ export const EditPostForm = ({defaultValues, postId}: {defaultValues: Pick<Table
                 rows={5}
             />
             {errors.content && <p className="text-red-500">{errors.content.message}</p>}
-            <Button type="submit">{isPending ? 'saving changes..' : 'saved changes'}</Button>
+            <Button type="submit">Save</Button>
             {/* {error && <p className="text-red-500">{error.message}</p>} */} {/* error variant 1 */}
       </form>
     )
