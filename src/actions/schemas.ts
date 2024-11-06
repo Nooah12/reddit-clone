@@ -12,4 +12,7 @@ export const postSchema = z.object({
     image: z.instanceof(FormData),
   })
 
-  // COMMENTSCHEMA
+export const commentSchema = z.object({
+    comment: z.string().min(1, 'The field is required and cannot be empty'),
+    postId: z.string(),
+})

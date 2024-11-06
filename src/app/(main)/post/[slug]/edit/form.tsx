@@ -28,24 +28,20 @@ export const EditPostForm = ({defaultValues, postId}: {defaultValues: Pick<Table
         <form onSubmit={handleSubmit((data) => mutate({data, postId}))} className="flex w-full flex-col gap-4"> {/* ist för values kan vi köra data direkt */}
            <input
                 {...register('title')}
-                // error={errors.title} // funkar ej?
                 type="text"
-                //required
                 placeholder="Title"
                 className="p-2 border rounded-2xl"
            />
            {errors.title && <p className="text-red-500">{errors.title.message}</p>}
            <textarea
                 {...register('content')}
-                // error={errors.content} // funkar ej?
-                //required // behövs?
                 placeholder="Content..."
                 className="p-2 border rounded-2xl"
                 rows={5}
             />
             {errors.content && <p className="text-red-500">{errors.content.message}</p>}
             <Button type="submit">Save</Button>
-            {/* {error && <p className="text-red-500">{error.message}</p>} */} {/* error variant 1 */}
+            {/* {error && <p className="text-red-500">{error.message}</p>} {/* error variant 1 */}
       </form>
     )
 }

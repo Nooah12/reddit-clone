@@ -25,7 +25,7 @@ export const SearchBar = () => {
     setQuery('')
   }, [pathname])
 
-  console.log(data)
+  //console.log(data)
 
   return (
     <div className='relative w-full max-w-lg'>
