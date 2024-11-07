@@ -84,11 +84,13 @@ const Comments = async ({ postId }: { postId: string }) => {
           </div>
         </div>
       ) : (
-        comments.map(({ id, comment, users }) => (
-          <div key={id}>
-            <p><strong>{users?.email || 'anonymous'}:</strong> {comment}</p>
-          </div>
-        ))
+        <section className=''>
+          {comments.map(({ id, comment, users }) => (
+            <div key={id} className="mb-4">
+              <p className='text-sm'><strong>{users?.email || 'anonymous'}:</strong> {comment}</p>
+            </div>
+          ))}
+        </section>
       )}
     </div>
   );

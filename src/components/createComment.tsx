@@ -21,8 +21,7 @@ const CreateComment = ({ postId }: { postId: string }) => {
     })
     
     return (
-        // onSubmit={handleSubmit((data) => mutate({ ...data, postId }))} ingen error men mutationFn..
-        <form onSubmit={handleSubmit((data) => mutate(data))} className="flex w-full flex-col gap-4">
+        <form onSubmit={handleSubmit((data) => mutate(data))} className="flex w-full flex-col gap-4 mb-8">
             <textarea 
                 {...register('comment')}
                 placeholder="Add a comment"

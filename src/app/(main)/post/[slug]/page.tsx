@@ -22,21 +22,28 @@ export default async function PostPage({ params }: { params: { slug: string } })
   return (
     <main className="main">
       <article className="mb-4">
-        <div className="flex-wrap flex items-start justify-between p-2 border rounded-xl bg-white">
-          <div>
-            <span className="mb-1 text-zinc-600">{post.users?.email}</span>
-            <h1 className="mb-4 text-2xl font-bold">{post.title}</h1>
+        <div className="p-2 border rounded-xl bg-white">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <span className="block mb-1 font-normal text-zinc-600">{post.users?.email}</span>
+              <h1 className="text-2xl font-bold">{post.title}</h1>
+            </div>
+            {isAuthor && (
+              <div className="flex gap-2">
+                <Link href={`/post/${params.slug}/edit`}>
+                  <Button>Edit</Button>
+                </Link>
+                <DeletePostButton postId={post.id} />
+              </div>
+            )}
           </div>
-          {isAuthor && 
-          <Link href={`/post/${params.slug}/edit`} className="flex gap-2">
-            <Button>Edit</Button>
-            <DeletePostButton postId={post.id} />
-          </Link>}
           <p className="text-sm">{post.content}</p>
         </div>
-        
       </article>
+
       <Comments postId={post.id} />
     </main>
+
+
   )
 }

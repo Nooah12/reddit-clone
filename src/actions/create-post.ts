@@ -17,7 +17,7 @@ export const createPost = async (data: z.infer<typeof postSchema>) => {
         throw Error('Not authenticated')
     }
 
-    const imageFile = data.image.get('image')
+    const imageFile = data.image?.get('image')
     if (!(imageFile instanceof File) && imageFile !== null) {
         throw new Error('malformed image')
     }
