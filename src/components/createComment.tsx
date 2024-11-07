@@ -25,10 +25,12 @@ const CreateComment = ({ postId }: { postId: string }) => {
             <textarea 
                 {...register('comment')}
                 placeholder="Add a comment"
-                className="p-2 border rounded-2xl text-sm" 
-                rows={1}
+                className="p-2 border rounded-2xl text-sm h-10 transition-all duration-200 ease-in-out focus:h-20" 
+                //rows={1}
             />
-            <Button type="submit">Comment</Button> {/*  width: 15% ipadmini ?!  */}
+            <div className="md:text-right">
+                <Button className="w-full md:w-20" type="submit" variant="secondary">Comment</Button> {/*  width: 15% ipadmini ?!  */}
+            </div>
         </form>
     )
 }

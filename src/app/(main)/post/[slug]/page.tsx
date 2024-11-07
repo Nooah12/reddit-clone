@@ -17,7 +17,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
   const {data: { user }} = await supabase.auth.getUser()
   const isAuthor = user && user.id === post.user_id
-  console.log(isAuthor, user, post.user_id)
+  //console.log(isAuthor, user, post.user_id)
 
   return (
     <main className="main">
@@ -41,7 +41,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         </div>
       </article>
 
-      <Comments postId={post.id} />
+      <Comments postId={post.id} postAuthorId={post.user_id} />
     </main>
 
 

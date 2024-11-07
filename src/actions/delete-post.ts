@@ -20,7 +20,10 @@ export const deletePost = async (postId: string) => {
         throw new Error('You re not allowed to delete this post')
     }
     
-    await supabase.from('posts').delete().eq('id', postId).throwOnError()
+    await supabase
+        .from('posts')
+        .delete().eq('id', postId)
+        .throwOnError()
 
     revalidatePath('/')
     redirect('/')
