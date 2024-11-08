@@ -8,18 +8,32 @@ export const deleteComment = async (commentId: string) => {
 
     const {data: comment} = await supabase // utan måsvingar rename data till comment
         .from('comments')
-        .select('user_id')
+        .select('user_id, post_id')
         .eq('id', commentId)
         .single() 
+
+        if (!comment) {
+            throw new Error('Comment not found')
+        }
+
+        const {data: post} = await supabase
+        .from('posts')
+        .select('user_id, slug')
+        .eq('id', comment.post_id)
+        .single()
     
     const {data: {user}} = await supabase.auth.getUser()
-    const isAuthor = user && user.id === comment?.user_id
+    const isAuthor = user && user.id === comment?.user_id 
+    const isPostAuthor = user && user.id === post?.user_id
+    console.log({isAuthor, isPostAuthor, comment})
 
 
-
-
-    if (!isAuthor) {
+    if (!isAuthor && !isPostAuthor) {
         throw new Error('You re not allowed to delete this comment')
+    }
+
+    if (!post) {
+        throw new Error("could not redirect");
     }
     
     await supabase
@@ -28,5 +42,5 @@ export const deleteComment = async (commentId: string) => {
         .eq('id', commentId)
         .throwOnError()
 
-    revalidatePath('/')
+    revalidatePath(`/post/${post.slug}`)
 }
