@@ -41,7 +41,6 @@ const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: strin
       ) : (
         <section>
           {comments.map(({ id, comment, users, user_id }) => {
-            // Check if current user is either comment author or post author ??
             const isCommentAuthor = user_id === currentUserId;
             const isPostAuthor = postAuthorId === currentUserId;
            // console.log({isCommentAuthor, isPostAuthor})
