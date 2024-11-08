@@ -41,7 +41,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         </div>
       </article>
 
-      <Comments postId={post.id} postAuthorId={post.user_id} />
+      <Comments postId={post.id} postAuthorId={post.user_id} currentUserId={user?.id} />
     </main>
 
 

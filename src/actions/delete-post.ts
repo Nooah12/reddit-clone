@@ -15,6 +15,7 @@ export const deletePost = async (postId: string) => {
     
     const {data: {user}} = await supabase.auth.getUser() // med måsvingar går man in i objektet hämtar {user}
     const isAuthor = user && user.id === post?.user_id // user.id inloggad användare är samma som author till inlägget
+    
 
     if (!isAuthor) {
         throw new Error('You re not allowed to delete this post')
@@ -22,7 +23,8 @@ export const deletePost = async (postId: string) => {
     
     await supabase
         .from('posts')
-        .delete().eq('id', postId)
+        .delete()
+        .eq('id', postId)
         .throwOnError()
 
     revalidatePath('/')

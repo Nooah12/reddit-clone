@@ -1,31 +1,3 @@
-/* 'use server'
-import { createClient } from "@/utils/supabase/server"
-import { commentSchema } from "./schemas"
-import { z } from "zod"
-import { revalidatePath } from "next/cache"
-
-export const createComment = async (data: z.infer<typeof commentSchema>, postId: string) => {
-    const parsedData = commentSchema.parse(data)
-    const supabase = createClient()
-
-    const {data: {user}} = await supabase.auth.getUser()
-    if (!user) {
-        throw Error('Not authenticated')
-    }
-
-    await supabase
-        .from('comments')
-        .insert([{
-            comment: parsedData.comment,
-            user_id: user.id,
-            post_id: parsedData.postId
-        }])
-
-    revalidatePath('/')
-} */
-
-
-// får bort mutationFn error men rätt ??
 'use server'
 import { createClient } from "@/utils/supabase/server";
 import { commentSchema } from "./schemas";
