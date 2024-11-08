@@ -50,25 +50,28 @@ export type Database = {
       }
       posts: {
         Row: {
-          content: string | null
+          content: string
           created_at: string
           id: string
+          image: string | null
           slug: string
           title: string
           user_id: string
         }
         Insert: {
-          content?: string | null
+          content: string
           created_at?: string
           id?: string
+          image?: string | null
           slug: string
           title: string
           user_id: string
         }
         Update: {
-          content?: string | null
+          content?: string
           created_at?: string
           id?: string
+          image?: string | null
           slug?: string
           title?: string
           user_id?: string

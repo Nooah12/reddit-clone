@@ -9,7 +9,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
   const supabase = createClient()
   const { data: post, error } = await supabase
     .from('posts')
-    .select('id, users("email"), user_id, title, content')
+    .select('id, users("email"), user_id, title, content, image')
     .eq('slug', params.slug)
     .single()
 
@@ -37,6 +37,9 @@ export default async function PostPage({ params }: { params: { slug: string } })
               </div>
             )}
           </div>
+          {post.image && (
+            <img src={post.image} alt={`${post.title} image`} className="mb-4 rounded-lg max-w-xs h-auto" />
+          )}
           <p className="text-sm">{post.content}</p>
         </div>
       </article>
