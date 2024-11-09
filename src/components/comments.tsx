@@ -46,7 +46,7 @@ const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: strin
            // console.log({isCommentAuthor, isPostAuthor})
 
             return (
-              <div key={id} className="mb-4">
+              <div key={id} className="flex justify-between mb-4 border">
                 <p className='text-sm'>
                   <strong>{users?.email || 'anonymous'}:</strong> {comment}
                 </p>

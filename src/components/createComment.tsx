@@ -13,12 +13,14 @@ const CreateComment = ({ postId }: { postId: string }) => {
     const {mutate} = useMutation({
         mutationFn: createComment, 
         onError: (error) => toast.error(error.message),
-        onSuccess:() => reset()
+        onSuccess: () => reset(),
+        //onSuccess:() => {reset(), toast.success('Your comment was updated!')}
     })
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm<z.infer<typeof commentSchema>>({
         resolver: zodResolver(commentSchema), 
-        defaultValues: {postId}
+        defaultValues: {postId},
+        // mode: "onBlur"
     })
     
     return (
@@ -26,8 +28,8 @@ const CreateComment = ({ postId }: { postId: string }) => {
             <textarea 
                 {...register('comment')}
                 placeholder="Add a comment"
-                className="p-2 mb-4 md:mb-2 border rounded-2xl text-sm h-10 transition-all duration-200 ease-in-out focus:h-20" 
-                //rows={1}
+                className="p-2 mb-4 md:mb-2 border rounded-2xl text-sm" 
+                rows={2}          
             />
             <div className="md:flex md:justify-between items-center">
                 {errors.comment && <p className="ml-4 mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}

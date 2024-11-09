@@ -17,7 +17,4 @@ export const signUp = async (formData: FormData) => {
     }
 
     console.log({ user, error })
-
-    // få in all validationskit vi gjorde i log-in form.tsx ! register... osv
-    // nu är sign up så enkel som det går, men går iaf regga användare som läggs till i databsen atm!
 }
