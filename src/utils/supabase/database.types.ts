@@ -14,6 +14,7 @@ export type Database = {
           comment: string
           created_at: string
           id: string
+          parent_id: string | null
           post_id: string
           user_id: string
         }
@@ -21,6 +22,7 @@ export type Database = {
           comment: string
           created_at?: string
           id?: string
+          parent_id?: string | null
           post_id?: string
           user_id?: string
         }
@@ -28,6 +30,7 @@ export type Database = {
           comment?: string
           created_at?: string
           id?: string
+          parent_id?: string | null
           post_id?: string
           user_id?: string
         }

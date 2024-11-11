@@ -35,7 +35,7 @@ export const editPost = async ({postId, data}: {postId: string, data: z.infer<ty
 
     const {data: updatePost} = await supabase
         .from('posts')
-        .update({...parsedData, slug: slugify(parsedData.title)})
+        .update({...parsedData, slug: slugify(parsedData.title)}) // error ??
         .eq('id', postId)
         .select('slug')
         .single()

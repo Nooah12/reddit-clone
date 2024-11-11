@@ -14,7 +14,7 @@ import { faReddit } from '@fortawesome/free-brands-svg-icons';
 
 const Header = async () => {
   const supabase = createClient()
-  const {data: {user}} = await supabase.auth.getUser()  // samma funktion som i middleware
+  const {data: {user}} = await supabase.auth.getUser()
   return (
     <header className='w-full flex justify-between items-center px-4 py-4 gap-4 md:px-20'>
       <Link href='/' className='text-2xl font-bold'>
@@ -34,7 +34,7 @@ const Header = async () => {
         </div>
           ) : (
             <Link href='/auth/log-in'>
-              <Button variant="primary">Log In</Button>
+              <Button className="bg-slate-500 hover:bg-slate-600" variant="primary">Log In</Button>
             </Link>
           )}
     </header>

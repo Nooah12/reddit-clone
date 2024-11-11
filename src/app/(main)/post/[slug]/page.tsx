@@ -31,7 +31,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
             {isAuthor && (
               <div className="flex gap-2">
                 <Link href={`/post/${params.slug}/edit`}>
-                  <Button>Edit</Button>
+                  <Button variant="secondary">Edit</Button>
                 </Link>
                 <DeletePostButton postId={post.id} />
               </div>

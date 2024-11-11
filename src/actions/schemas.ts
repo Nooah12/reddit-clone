@@ -13,6 +13,8 @@ export const postSchema = z.object({
   })
 
 export const commentSchema = z.object({
-    comment: z.string().min(1, 'The field is required and cannot be empty'),
+    comment: z.string().min(1, 'This field is required and cannot be empty'),
     postId: z.string(),
+    /* parentId: z.string().min(1, 'This field is required!'), */ 
+    parentId: z.string().nullable().optional(), // Allow null or undefined for top-level comments
 })
