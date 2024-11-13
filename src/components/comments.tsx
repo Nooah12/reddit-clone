@@ -1,9 +1,40 @@
 import { createClient } from '@/utils/supabase/client';
 import CreateCommentForm from './createCommentForm';
-import DeleteCommentButton from './buttons/deleteCommentButton';
-import ReplyCommentForm from './buttons/replyCommentForm';
+import CommentItem from './commentItem';
 
 export const revalidate = 60 * 15;
+
+export type Comment = {
+  id: string;
+  comment: string;
+  user_id: string;
+  users: { email: string };
+  parent_id: string | null;
+  replies: Comment[];
+};
+
+type CommentFromDB = Omit<Comment, 'replies'>;
+
+  function nestComments(comments: CommentFromDB[]): Comment[] {
+    const commentMap: { [key: string]: Comment } = {};
+  
+    // Initialize commentMap with each comment and an empty replies array
+    comments.forEach(comment => {
+      commentMap[comment.id] = { ...comment, replies: [] };
+    });
+  
+    // Build nested structure
+    const nestedComments: Comment[] = [];
+    comments.forEach(comment => {
+      if (comment.parent_id) {
+        commentMap[comment.parent_id]?.replies.push(commentMap[comment.id]);
+      } else {
+        nestedComments.push(commentMap[comment.id]);
+      }
+    });
+  
+    return nestedComments;
+  }
 
 const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: string, postAuthorId: string, currentUserId: string | undefined }) => {
   const supabase = createClient();
@@ -12,18 +43,23 @@ const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: strin
     .from('comments')
     .select('id, comment, user_id, users(email), parent_id')
     .eq('post_id', postId)
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: true }) as { 
+      data: CommentFromDB[] | null, 
+      error: any 
+    };
 
   if (error) {
     return <div>Failed to load comments</div>;
   }
 
-  const { data: { user } } = await supabase.auth.getUser(); // lägg till för authenticated
+  const nestedComments = nestComments(comments || []);
+
+  const { data: { user } } = await supabase.auth.getUser(); // lägg till för authenticated 
 
   return (
     <div>
       <CreateCommentForm postId={postId} />
-      {comments.length === 0 ? (
+      {nestedComments.length === 0 ? (
         <div className='flex mt-8'>
           <div className='basis-12 mr-4'>
             <img src="/thinking-snoo.png" alt="snoo-logo" className='w-auto' />
@@ -38,34 +74,16 @@ const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: strin
         </div>
       ) : (
         <section>
-          {comments.map(({ id, comment, users, user_id, parent_id }) => {
-            const isCommentAuthor = user_id === currentUserId;
-            const isPostAuthor = postAuthorId === currentUserId;
-
-            const showReply = parent_id != null; // Check if it's a reply / Only true if parent_id exists (not null or undefined)
-
-            // Define showReply logic: display form if parent_id is null or matches the current comment id
-            //const showReply = !parent_id || parent_id === id;
-            //const isReply = Boolean(parent_id);
-
-            return (
-              <div key={id} className="flex justify-between mb-4 border">
-                <div>
-                  <p className='text-sm'>
-                    <strong>{users?.email || 'anonymous'}:</strong> {comment}
-                  </p>
-                  {(isCommentAuthor || isPostAuthor) && ( <DeleteCommentButton commentId={id} />)}
-                </div>
-                
-                {!showReply && (
-                  <div className="ml-4 mt-2">
-                    <ReplyCommentForm postId={postId} parentId={id} />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </section>
+        {nestedComments.map(comment => (
+          <CommentItem
+            key={comment.id}
+            comment={comment}
+            postId={postId}
+            postAuthorId={postAuthorId}
+            currentUserId={currentUserId}
+          />
+        ))}
+      </section>
       )}
     </div>
   );
