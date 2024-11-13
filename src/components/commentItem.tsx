@@ -6,7 +6,7 @@ type CommentProps = {
   comment: Comment;
   postId: string;
   postAuthorId: string;
-  currentUserId?: string | undefined;
+  currentUserId?: string; //| undefined;
 };
 
 const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentProps) => {
@@ -19,10 +19,15 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
       <p className='text-sm'>
         <strong>{users?.email || 'anonymous'}:</strong> {text}
       </p>
-      {(isCommentAuthor || isPostAuthor) && (
-        <DeleteCommentButton commentId={id} />
+
+      {currentUserId && (
+        <>
+          {(isCommentAuthor || isPostAuthor) && (
+            <DeleteCommentButton commentId={id} />
+          )}
+          <ReplyCommentForm postId={postId} parentId={id} />
+        </>
       )}
-      <ReplyCommentForm postId={postId} parentId={id} />
 
       {replies.length > 0 && (
         <div className="ml-4"> {/* Nested comments */}

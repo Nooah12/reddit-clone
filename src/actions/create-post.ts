@@ -31,7 +31,7 @@ export const createPost = async (data: z.infer<typeof postSchema>) => {
             content: parsedData.content,
             image: imagePublicUrl, 
             user_id: user.id, 
-            slug: slugify(parsedData.title)}]) // slugen baseras på titeln, därav blir även titeln unik! Lägg till username eller nåt för att få bort unik titel
+            slug: slugify(parsedData.title)}])
         .throwOnError()
 
     revalidatePath('/')

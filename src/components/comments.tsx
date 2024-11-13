@@ -36,7 +36,7 @@ type CommentFromDB = Omit<Comment, 'replies'>;
     return nestedComments;
   }
 
-const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: string, postAuthorId: string, currentUserId: string | undefined }) => {
+const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: string, postAuthorId: string, currentUserId?: string }) => { // currentUserId: string | undefined
   const supabase = createClient();
 
   const { data: comments, error } = await supabase
@@ -54,11 +54,10 @@ const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: strin
 
   const nestedComments = nestComments(comments || []);
 
-  const { data: { user } } = await supabase.auth.getUser(); // lägg till för authenticated 
-
   return (
     <div>
-      <CreateCommentForm postId={postId} />
+      {currentUserId && <CreateCommentForm postId={postId} />}
+      
       {nestedComments.length === 0 ? (
         <div className='flex mt-8'>
           <div className='basis-12 mr-4'>

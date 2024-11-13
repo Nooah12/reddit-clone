@@ -7,6 +7,8 @@ import { notFound } from "next/navigation"
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const supabase = createClient()
+  const {data: { user }} = await supabase.auth.getUser()
+
   const { data: post, error } = await supabase
     .from('posts')
     .select('id, users("email"), user_id, title, content, image')
@@ -15,7 +17,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
   if (!post || error) notFound()
 
-  const {data: { user }} = await supabase.auth.getUser()
   const isAuthor = user && user.id === post.user_id
   //console.log(isAuthor, user, post.user_id)
 
