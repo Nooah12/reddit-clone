@@ -48,7 +48,4 @@ export const editPost = async ({postId, data}: {postId: string, data: z.infer<ty
 
         revalidatePath('/')
         redirect(`/post/${updatePost.slug}`)
-        // update slug
-        //pro: url matches new title
-        //con: old link wont work
 }

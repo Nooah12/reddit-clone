@@ -8,8 +8,6 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 
-
-/* const ReplyCommentForm = ({ postId, parentId = null }: { postId: string; parentId?: string | null }) => { */
 const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: string; }) => {
     const {mutate} = useMutation({
         mutationFn: createComment, 
@@ -20,14 +18,14 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm<z.infer<typeof commentSchema>>({
         resolver: zodResolver(commentSchema), 
-        defaultValues: {postId, parentId}, // parentId: parentId || null - Make sure to pass parentId or null for top-level comments
+        defaultValues: {postId, parentId},
         // mode: "onBlur"
     })
     
     return (
         <form onSubmit={handleSubmit((data) => mutate(data))} className="flex w-full flex-col mb-8">
             <textarea 
-                {...register('comment')} // change this one??
+                {...register('comment')}
                 placeholder="Add a reply"
                 className="p-2 mb-4 md:mb-2 border rounded-2xl text-sm" 
                 rows={1}          
@@ -35,7 +33,7 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
             <input 
                 type="hidden" 
                 {...register('parentId')} 
-                value={parentId} // Need this input at all??
+                value={parentId}
             />
             <div className="md:flex md:justify-between items-center">
                 {errors.comment && <p className="ml-4 mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}

@@ -19,14 +19,13 @@ export const LogInForm = () => {
   return (
     <form onSubmit={handleSubmit((values) => mutate(values))} className="flex w-full max-w-md flex-col gap-4">
       <input {...register('email')} placeholder="Email" className="p-2 border-2 rounded-xl" />
-      {errors.email && <span>{errors.email.message}</span>}
+      {errors.email && <span className="text-xs">{errors.email.message}</span>}
       
       <input {...register('password')} placeholder="Password" type="password" className="p-2 border-2 rounded-xl" />
-      {errors.password && <span>{errors.password.message}</span>}
+      {errors.password && <span className="text-xs">{errors.password.message}</span>}
       
       <Button variant="primary" type="submit">{isPending ? 'Logging in...' : 'Login'}</Button>
-      
-      {error && <p>{error.message}</p>}
+      {error && <p className="text-xs">{error.message}</p>}
     </form>
   );
 };

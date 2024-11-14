@@ -2,13 +2,12 @@ import { z } from "zod";
 
 export const logInSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(3, 'Password must be at least 3 characters'),
-    // username: z.string().min(3, 'must be at least 3 characters')
+    password: z.string().min(6, 'Password must be at least 6 characters'),
 })
 
 export const postSchema = z.object({
-    title: z.string().min(3, 'title must be at least 3 characters'),
-    content: z.string().min(1), // .optional() ifall den får va null, på img t.ex kanske
+    title: z.string().min(3, 'This field is required and cannot be empty'),
+    content: z.string().min(3, 'This field is required and cannot be empty'),
     image: z.instanceof(FormData).optional(),
   })
 

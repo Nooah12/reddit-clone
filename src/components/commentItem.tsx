@@ -6,7 +6,7 @@ type CommentProps = {
   comment: Comment;
   postId: string;
   postAuthorId: string;
-  currentUserId?: string; //| undefined;
+  currentUserId?: string;
 };
 
 const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentProps) => {

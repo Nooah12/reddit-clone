@@ -32,14 +32,14 @@ export const EditPostForm = ({defaultValues, postId}: {defaultValues: Pick<Table
                 placeholder="Title"
                 className="p-2 border rounded-2xl"
            />
-           {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+           {errors.title && <p className="text-red-500 text-xs">{errors.title.message}</p>}
            <textarea
                 {...register('content')}
                 placeholder="Content..."
                 className="p-2 border rounded-2xl"
                 rows={5}
             />
-            {errors.content && <p className="text-red-500">{errors.content.message}</p>}
+            {errors.content && <p className="text-red-500 text-xs">{errors.content.message}</p>}
             <Button type="submit">Save</Button>
             {/* {error && <p className="text-red-500">{error.message}</p>} {/* error variant 1 */}
       </form>

@@ -13,8 +13,9 @@ export const createPost = async (data: z.infer<typeof postSchema>) => {
     const supabase = createClient()
 
     const {data: {user}} = await supabase.auth.getUser()
+    console.log("Current user:", user)  // Add this to debug
     if (!user) {
-        throw Error('Not authenticated')
+        throw Error('You must be logged in to create a post')
     }
 
     const imageFile = data.image?.get('image')

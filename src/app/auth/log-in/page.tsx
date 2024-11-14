@@ -10,7 +10,7 @@ export default function LogInPage() {
         <LogInForm />
       </div>
       <Link href='/auth/sign-up' className='text-zinc-500'>
-        don&apos;t have an account? sign up
+        Don&apos;t have an account? <span className='font-bold'>Sign up</span>
       </Link>
     </main>
   )

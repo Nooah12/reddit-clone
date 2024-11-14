@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/client';
-import CreateCommentForm from './createCommentForm';
+import CreateCommentForm from './buttons/createCommentForm';
 import CommentItem from './commentItem';
 
 export const revalidate = 60 * 15;

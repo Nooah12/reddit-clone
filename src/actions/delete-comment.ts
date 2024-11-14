@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache"
 export const deleteComment = async (commentId: string) => {
     const supabase = createClient()
 
-    const {data: comment} = await supabase // utan måsvingar rename data till comment
+    const {data: comment} = await supabase
         .from('comments')
         .select('user_id, post_id')
         .eq('id', commentId)
@@ -25,8 +25,7 @@ export const deleteComment = async (commentId: string) => {
     const {data: {user}} = await supabase.auth.getUser()
     const isAuthor = user && user.id === comment?.user_id 
     const isPostAuthor = user && user.id === post?.user_id
-    console.log({isAuthor, isPostAuthor, comment})
-
+    //console.log({isAuthor, isPostAuthor, comment})
 
     if (!isAuthor && !isPostAuthor) {
         throw new Error('You re not allowed to delete this comment')
