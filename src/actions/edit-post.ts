@@ -8,8 +8,8 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 export const editPost = async ({postId, data}: {postId: string, data: z.infer<typeof postSchema>}) => {
-    const parsedData = postSchema.parse(data)
     const supabase = createClient()
+    const parsedData = postSchema.parse(data)
 
     const {data: {user}} = await supabase.auth.getUser()
 
@@ -33,19 +33,21 @@ export const editPost = async ({postId, data}: {postId: string, data: z.infer<ty
         throw new Error("You re not allowed to edit this post mf");
     }
 
+    const { image, ...updateData } = parsedData
+
     const {data: updatePost} = await supabase
         .from('posts')
-        .update({...parsedData, slug: slugify(parsedData.title)}) // error ??
+        .update({...updateData,slug: slugify(parsedData.title)})
         .eq('id', postId)
         .select('slug')
         .single()
         .throwOnError()
 
-        if (!updatePost) {
-            throw new Error("could not redirect");
-            
-        }
+    if (!updatePost) {
+        throw new Error("could not redirect");
+        
+    }
 
-        revalidatePath('/')
-        redirect(`/post/${updatePost.slug}`)
+    revalidatePath('/')
+    redirect(`/post/${updatePost.slug}`)
 }
