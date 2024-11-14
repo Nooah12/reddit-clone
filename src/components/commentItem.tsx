@@ -15,11 +15,10 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
   const isPostAuthor = postAuthorId === currentUserId;
 
   return (
-    <div className="ml-4 mt-4 border-l pl-4"> {/* Indented styling for replies */}
+    <div className="pl-4"> {/* Indented styling for replies */}
       <p className='text-sm'>
         <strong>{users?.email || 'anonymous'}:</strong> {text}
       </p>
-
       {currentUserId && (
         <>
           {(isCommentAuthor || isPostAuthor) && (
@@ -28,9 +27,8 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
           <ReplyCommentForm postId={postId} parentId={id} />
         </>
       )}
-
       {replies.length > 0 && (
-        <div className="ml-4"> {/* Nested comments */}
+        <div className='mt-2 md:mt-3 border-l'>
           {replies.map(reply => (
             <CommentItem
               key={reply.id}

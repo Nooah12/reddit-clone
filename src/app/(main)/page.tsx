@@ -11,7 +11,7 @@ export default async function Home() { // server component
 
   return (
     <main className='main space-y-12'>
-      <h1>Latest Postsss</h1> 
+      <h1 className='text-lg underline'>Latest posts</h1> 
       {error || posts.length === 0 ? (
         <div>no posts found mf</div>
       ) : ( 

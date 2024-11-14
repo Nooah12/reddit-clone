@@ -26,7 +26,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         <div className="p-2 border rounded-xl bg-white">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <span className="block mb-1 font-normal text-zinc-600">{post.users?.email}</span>
+              <span className="text-sm block mb-1 font-normal text-zinc-600">{post.users?.email}</span>
               <h1 className="text-2xl font-bold">{post.title}</h1>
             </div>
             {isAuthor && (

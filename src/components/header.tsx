@@ -16,10 +16,10 @@ const Header = async () => {
   const supabase = createClient()
   const {data: {user}} = await supabase.auth.getUser()
   return (
-    <header className='w-full flex justify-between items-center px-4 py-4 gap-4 md:px-20'>
-      <Link href='/' className='text-2xl font-bold'>
-      <FontAwesomeIcon icon={faReddit} style={{color: "#f53629",}} />
-        <span className='ml-1'>reddit</span>
+    <header className='w-full flex justify-between items-center px-4 py-4 gap-4 md:px-20 border'>
+      <Link href='/' className='text-2xl font-bold flex items-center'>
+      {<FontAwesomeIcon icon={faReddit} style={{color: "#f53629",}} />  }
+        <span className='ml-1 hidden md:inline'>reddit</span>
       </Link>
       <SearchBar />
       {user ? (
@@ -27,14 +27,14 @@ const Header = async () => {
           <Link href='/createPost'>
             <Button variant='secondary'>
               <FontAwesomeIcon icon={faPlus} />
+              <span className='ml-1 hidden md:inline'>Create</span>
             </Button>
-            {/* <Button onClick={() => logOut()}>log out</Button> */} 
           </Link>
           <LogOutButton />
         </div>
           ) : (
             <Link href='/auth/log-in'>
-              <Button className="bg-slate-500 hover:bg-slate-600" variant="primary">Log In</Button>
+              <Button className=" scale-75 md:scale-100" variant="primary">Log In</Button>
             </Link>
           )}
     </header>

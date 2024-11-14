@@ -14,7 +14,7 @@ export const editPost = async ({postId, data}: {postId: string, data: z.infer<ty
     const {data: {user}} = await supabase.auth.getUser()
 
     if (!user) {
-        throw new Error('not authenticated')
+        throw new Error('Not authenticated')
     }
 
     const {data: post} = await supabase
@@ -24,7 +24,7 @@ export const editPost = async ({postId, data}: {postId: string, data: z.infer<ty
         .single()
 
     if (!post) {
-        throw new Error("post not found");
+        throw new Error("Post not found");
     }
 
     const isAuthor = user && user.id === post.user_id
