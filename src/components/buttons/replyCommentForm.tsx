@@ -7,8 +7,13 @@ import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faReply } from "@fortawesome/free-solid-svg-icons"
+import { useState } from "react";
 
 const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: string; }) => {
+    const [showReplyForm, setShowReplyForm] = useState(true);
+
     const {mutate} = useMutation({
         mutationFn: createComment, 
         onError: (error) => toast.error(error.message),
@@ -23,23 +28,31 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
     })
     
     return (
-        <form onSubmit={handleSubmit((data) => mutate(data))} className="flex w-full flex-col mb-8">
-            <textarea 
-                {...register('comment')}
-                placeholder="Add a reply"
-                className="p-2 mb-4 md:mb-2 border rounded-2xl text-sm" 
-                rows={1}          
-            />
-            <input 
-                type="hidden" 
-                {...register('parentId')} 
-                value={parentId}
-            />
-            <div className="md:flex md:justify-between items-center">
-                {errors.comment && <p className="ml-4 mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}
-                <Button className="w-full md:w-20 md:ml-auto" type="submit" variant="secondary">Reply</Button>
+        <div className="w-full text-right">
+            <button onClick={() => setShowReplyForm(!showReplyForm)} className="text-gray-600 hover:text-gray-800 mb-2">
+                <FontAwesomeIcon icon={faReply} className="mr-2" />
+                Reply
+            </button>
+            <div className={`${!showReplyForm ? 'block' : 'hidden'}`}>
+                <form onSubmit={handleSubmit((data) => mutate(data))} className="w-full flex flex-col">
+                    <textarea 
+                        {...register('comment')}
+                        placeholder="Add a reply"
+                        className="p-2 mb-4 md:mb-2 border rounded-2xl text-sm" 
+                        rows={1}          
+                    />
+                    <input 
+                        type="hidden" 
+                        {...register('parentId')} 
+                        value={parentId}
+                    />
+                    <div className="md:flex md:justify-between items-center">
+                        {errors.comment && <p className="ml-4 mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}
+                        <Button className="w-full md:w-20 md:ml-auto" type="submit" variant="secondary">Reply</Button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     )
 }
 

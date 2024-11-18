@@ -5,6 +5,8 @@ import { Button } from './button'
 import { deleteComment } from '@/actions/delete-comment'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
+import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const DeleteCommentButton = ({commentId}: {commentId: string}) => {
     const {mutate} = useMutation({ 
@@ -16,7 +18,9 @@ const DeleteCommentButton = ({commentId}: {commentId: string}) => {
     })
 
   return (
-    <Button onClick={() => mutate()} variant='primary'>Delete</Button>
+    <Button onClick={() => mutate()} variant='primary' className='w-10 h-10 !px-2 scale-75 flex items-center justify-center'> 
+      <FontAwesomeIcon icon={faTrash} />  
+    </Button>
   )
 }
 

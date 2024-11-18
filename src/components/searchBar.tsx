@@ -10,7 +10,7 @@ export const SearchBar = () => {
   const pathname = usePathname()
   const [query, setQuery] = useState('')
   const {data} = useQuery({
-    queryKey: ['search', query], // query lite som en useEffect
+    queryKey: ['search', query],
     queryFn: async (event) => {
       const {data, error} = await getPostsByQuery(query)
 
@@ -38,16 +38,15 @@ export const SearchBar = () => {
           type='text'
           value={query} // lägg till för useEffect ?
           placeholder='search...'
-          className='text-zinc-800 outline-none'
+          className='w-full text-zinc-800 outline-none'
           onChange={async (event) => {
             setQuery(event.target.value)
           }}
         />
-        <div>
           {data && (
             <div className={searchResultClasses}>
               {data.length === 0 ? (
-                <div>no posts found with that title</div>
+                <div className='ml-1'>no posts found with that title</div>
               ) : (
                 data.map(({id, title, slug}) => (
                   <Link key={id} href={`/post/${slug}`} className={searchResultItemClasses}>
@@ -57,7 +56,6 @@ export const SearchBar = () => {
               )}
             </div>
           )}
-        </div>
       </div>
     </div>
   )
