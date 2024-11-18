@@ -6,8 +6,8 @@ export const logInSchema = z.object({
 })
 
 export const postSchema = z.object({
-    title: z.string().min(3, 'This field is required and cannot be empty'),
-    content: z.string().min(3, 'This field is required and cannot be empty'),
+    title: z.string().min(1, 'This field is required and cannot be empty'),
+    content: z.string().min(1, 'This field is required and cannot be empty'),
     image: z.instanceof(FormData).optional(),
   })
 
