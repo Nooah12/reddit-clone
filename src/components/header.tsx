@@ -5,7 +5,8 @@ import { createClient } from '@/utils/supabase/server'
 import { LogOutButton } from './buttons/logoutButton'
 import { SearchBar } from './searchBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus,  } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons"
 import { faReddit } from '@fortawesome/free-brands-svg-icons';
 
 const Header = async () => {
@@ -30,7 +31,11 @@ const Header = async () => {
         </div>
       ) : (
         <Link href='/auth/log-in'>
-          <Button className="scale-75 md:scale-100" variant="primary">Log In</Button>
+          <Button className="w-10 h-10 p-0 lg:w-auto lg:h-auto lg:py-2 lg:px-4 scale-75 lg:scale-100 flex items-center justify-center" variant="primary">
+            <FontAwesomeIcon icon={faArrowRightToBracket} className="lg:![display:none]" />
+            <span className="hidden lg:inline">Log In</span>
+          </Button>
+
         </Link>
       )}
     </header>

@@ -8,8 +8,9 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faReply } from "@fortawesome/free-solid-svg-icons"
+import { faCommentDots } from "@fortawesome/free-regular-svg-icons"
 import { useState } from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: string; }) => {
     const [showReplyForm, setShowReplyForm] = useState(true);
@@ -30,7 +31,7 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
     return (
         <div className="w-full text-right">
             <button onClick={() => setShowReplyForm(!showReplyForm)} className="text-gray-600 hover:text-gray-800 mb-2">
-                <FontAwesomeIcon icon={faReply} className="mr-2" />
+                <FontAwesomeIcon icon={faCommentDots as IconProp} className="mr-1" />
                 Reply
             </button>
             <div className={`${!showReplyForm ? 'block' : 'hidden'}`}>
