@@ -10,7 +10,7 @@ export const createComment = async (data: z.infer<typeof commentSchema>) => {
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-        throw Error("Not authenticated");
+        throw Error("Log in to reply");
     }
 
     await supabase
