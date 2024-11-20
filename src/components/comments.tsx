@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/client';
-import CreateCommentForm from './buttons/createCommentForm';
+import CreateCommentForm from './forms/createCommentForm';
 import CommentItem from './commentItem';
 
 export const revalidate = 60 * 15;
@@ -70,7 +70,7 @@ const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: strin
           </div>
         </div>
       ) : (
-        <section className='flex flex-col gap-4 md:gap-6'>
+        <section className='flex flex-col'> {/* gap-4 md:gap-6 ok ta bort gap helt? */}
         {nestedComments.map(comment => (
           <CommentItem
             key={comment.id}

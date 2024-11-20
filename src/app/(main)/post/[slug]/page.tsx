@@ -22,7 +22,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
   return (
     <main className="main">
-      <article className="mb-4">
+      <article className="mb-4 md:mb-6 lg:mb-8">
         <div className="p-2 border rounded-xl bg-white">
           <div className="flex justify-between items-center mb-4">
             <div>

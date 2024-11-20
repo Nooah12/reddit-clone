@@ -17,7 +17,7 @@ export const SearchBar = () => {
       if (error) throw error
       return data
     },
-    enabled: () => (query && query.length >= 3 ? true : false) // om längre än 3 tecken sök annars inte
+    enabled: () => (query && query.length >= 3 ? true : false)
   })
 
   // töm text i inputfältet?
@@ -36,7 +36,7 @@ export const SearchBar = () => {
         <input
           id='search'
           type='text'
-          value={query} // lägg till för useEffect ?
+          value={query}
           placeholder='search...'
           className='w-full text-zinc-800 outline-none'
           onChange={async (event) => {
@@ -46,7 +46,7 @@ export const SearchBar = () => {
           {data && (
             <div className={searchResultClasses}>
               {data.length === 0 ? (
-                <div className='ml-1'>no posts found with that title</div>
+                <div className='ml-4'>No posts found</div>
               ) : (
                 data.map(({id, title, slug}) => (
                   <Link key={id} href={`/post/${slug}`} className={searchResultItemClasses}>

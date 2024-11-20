@@ -1,5 +1,5 @@
 import DeleteCommentButton from './buttons/deleteCommentButton';
-import ReplyCommentForm from './buttons/replyCommentForm';
+import ReplyCommentForm from './forms/replyCommentForm';
 import { Comment } from './comments';
 
 type CommentProps = {
@@ -15,7 +15,7 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
   const isPostAuthor = postAuthorId === currentUserId;
 
   return (
-    <div className="mb-4"> {/* Base margin for each comment */}
+    <div className="mb-4"> {/* Base margin for each comment - ta bort för ej inloggad?? */} 
       {/* Top-level comment */}
       <div className="rounded-md p-1 border">   {/*  border-l-2 border-gray-200 */}
         <div className='flex justify-between'>
@@ -25,15 +25,13 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
             )}
         </div>
         <p className="text-sm text-gray-600 my-1">{commentText}</p>
-
-        <div className="flex items-center gap-2 text-sm"> {/* reply form */}
-          <ReplyCommentForm postId={postId} parentId={id} />
-        </div>
+        
+        <ReplyCommentForm postId={postId} parentId={id} />
       </div>
 
       {/* Nested replies */}
       {replies.length > 0 && (
-        <div className="ml-4 md:ml-6 mt-4 space-y-4"> {/* Indent and style replies */}
+        <div className="ml-4 md:ml-6 mt-2 space-y-4"> {/* Indent and style replies */}
           {replies.map(reply => (
             <CommentItem
               key={reply.id}
