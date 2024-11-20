@@ -36,22 +36,23 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
                     Reply
                 </button>
                 <div className={`${!showReplyForm ? 'block' : 'hidden'}`}>
-                    <form onSubmit={handleSubmit((data) => mutate(data))} className="w-full flex flex-col">
+                    <form onSubmit={handleSubmit((data) => mutate(data))} className="mt-2 w-full flex flex-col relative">
                         <textarea 
                             {...register('comment')}
                             placeholder="Add a reply"
-                            className="p-2 mb-4 md:mb-2 border rounded-2xl text-sm" 
-                            rows={1}          
+                            className="p-2 pr-20 rounded-2xl text-sm" 
+                            rows={4}          
                         />
                         <input 
                             type="hidden" 
                             {...register('parentId')} 
                             value={parentId}
                         />
-                        <div className="md:flex md:justify-between items-center">
-                            {errors.comment && <p className="ml-4 mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}
-                            <Button className="w-full md:w-20 md:ml-auto" type="submit" variant="secondary">Reply</Button>
+                        {/* <div className="md:flex md:justify-between items-center"> */}
+                        <div className="absolute right-2 top-[67%] md:top-[72%] -translate-y-1/2">
+                            <Button className="20" type="submit" variant="secondary">Reply</Button>
                         </div>
+                        {errors.comment && <p className="absolute -bottom-0 left-0 ml-4 mb-6 md:mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}
                     </form>
                 </div>
             </div>
