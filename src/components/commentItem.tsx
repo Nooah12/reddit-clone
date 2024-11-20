@@ -17,7 +17,7 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
   return (
     <div className="mb-4">
       {/* Top-level comment */}
-      <div className="rounded-2xl p-1 border">   {/*  border-l-2 border-gray-200 */}
+      <div className="rounded-2xl p-1 shadow-lg">   {/*  border-l-2 border-gray-200 */}
         <div className='flex justify-between'>
           <p className="text-sm font-bold text-gray-600">{users?.email || 'anonymous'}</p>
           {(isCommentAuthor || isPostAuthor) && (

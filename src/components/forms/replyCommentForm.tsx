@@ -41,7 +41,7 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
                             {...register('comment')}
                             placeholder="Add a reply"
                             className="p-2 pr-20 rounded-2xl text-sm" 
-                            rows={4}          
+                            rows={3}          
                         />
                         <input 
                             type="hidden" 
@@ -49,7 +49,7 @@ const ReplyCommentForm = ({ postId, parentId}: { postId: string; parentId: strin
                             value={parentId}
                         />
                         {/* <div className="md:flex md:justify-between items-center"> */}
-                        <div className="absolute right-2 top-[67%] md:top-[72%] -translate-y-1/2">
+                        <div className="absolute right-2 top-[75%] -translate-y-1/2">
                             <Button className="20" type="submit" variant="secondary">Reply</Button>
                         </div>
                         {errors.comment && <p className="absolute -bottom-0 left-0 ml-4 mb-6 md:mb-4 text-xs text-center inline-flex text-red-500">{errors.comment.message}</p>}
