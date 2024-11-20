@@ -20,7 +20,6 @@ export const SearchBar = () => {
     enabled: () => (query && query.length >= 3 ? true : false)
   })
 
-  // töm text i inputfältet?
   useEffect(() => {
     setQuery('')
   }, [pathname])

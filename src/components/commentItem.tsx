@@ -15,7 +15,7 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
   const isPostAuthor = postAuthorId === currentUserId;
 
   return (
-    <div className="mb-4"> {/* Base margin for each comment - ta bort för ej inloggad?? */} 
+    <div className="mb-4">
       {/* Top-level comment */}
       <div className="rounded-md p-1 border">   {/*  border-l-2 border-gray-200 */}
         <div className='flex justify-between'>
@@ -31,7 +31,7 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
 
       {/* Nested replies */}
       {replies.length > 0 && (
-        <div className="ml-4 md:ml-6 mt-2 space-y-4"> {/* Indent and style replies */}
+        <div className="ml-4 md:ml-6 mt-2 space-y-4">
           {replies.map(reply => (
             <CommentItem
               key={reply.id}

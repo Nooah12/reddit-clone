@@ -35,7 +35,7 @@ function nestComments(comments: CommentFromDB[]): Comment[] {
   return nestedComments;
 }
 
-const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: string, postAuthorId: string, currentUserId?: string }) => { // currentUserId: string | undefined
+const Comments = async ({ postId, postAuthorId, currentUserId }: { postId: string, postAuthorId: string, currentUserId?: string }) => {
   const supabase = createClient();
 
   const { data: comments, error } = await supabase
