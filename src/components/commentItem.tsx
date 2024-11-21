@@ -16,7 +16,6 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
 
   return (
     <div className="mb-4">
-      {/* Top-level comment */}
       <div className="rounded-2xl p-1 shadow-lg">   {/*  border-l-2 border-gray-200 */}
         <div className='flex justify-between'>
           <p className="text-sm font-bold text-gray-600">{users?.email || 'anonymous'}</p>
@@ -29,7 +28,6 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
         <ReplyCommentForm postId={postId} parentId={id} />
       </div>
 
-      {/* Nested replies */}
       {replies.length > 0 && (
         <div className="ml-4 md:ml-6 mt-2 space-y-4">
           {replies.map(reply => (
@@ -45,6 +43,8 @@ const CommentItem = ({ comment, postId, postAuthorId, currentUserId }: CommentPr
       )}
     </div>
   );
-};
+}; 
+
+
 
 export default CommentItem;
